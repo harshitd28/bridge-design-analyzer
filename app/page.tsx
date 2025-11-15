@@ -97,7 +97,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
-                Bridge Design Analyzer
+                GeoBridge AI
               </h1>
               <p className="text-blue-200 text-xs sm:text-sm md:text-base lg:text-lg">
                 Geomorphic Analysis for Hilly Terrain Bridge Structures

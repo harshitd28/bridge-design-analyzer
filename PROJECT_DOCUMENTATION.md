@@ -1,4 +1,4 @@
-# 🌉 Bridge Design Analyzer - Project Documentation & Pitch Deck
+# 🌉 GeoBridge AI - Project Documentation & Pitch Deck
 
 ## 📋 Table of Contents
 1. [Project Overview](#project-overview)
@@ -17,7 +17,7 @@
 
 ## 🎯 Project Overview
 
-**Bridge Design Analyzer** is an advanced IT-based tool that redesigns bridge structures based on geomorphic conditions, specifically optimized for hilly terrain. The platform combines real-time geomorphic analysis, predictive analytics, AI-powered optimization, and immersive 3D visualizations to help engineers make informed bridge design decisions.
+**GeoBridge AI** is an advanced IT-based tool that redesigns bridge structures based on geomorphic conditions, specifically optimized for hilly terrain. The platform combines real-time geomorphic analysis, predictive analytics, AI-powered optimization, and immersive 3D visualizations to help engineers make informed bridge design decisions.
 
 ### Core Value Proposition
 - **Data-Driven Decisions**: Real-time terrain and seismic analysis
@@ -48,7 +48,7 @@
 
 ## 💡 Solution
 
-**Bridge Design Analyzer** provides a comprehensive, AI-powered platform that:
+**GeoBridge AI** provides a comprehensive, AI-powered platform that:
 
 1. **Analyzes** terrain conditions in real-time using geomorphic data
 2. **Predicts** risks (landslides, seismic activity, construction timelines)
@@ -502,7 +502,7 @@ Output: Risk Score (10-90%)
 ## 📊 Pitch Deck Content
 
 ### Slide 1: Title Slide
-**Title:** Bridge Design Analyzer
+**Title:** GeoBridge AI
 **Subtitle:** AI-Powered Geomorphic Analysis for Hilly Terrain Bridge Structures
 **Tagline:** "Building Bridges, Building Futures"
 
@@ -525,7 +525,7 @@ Output: Risk Score (10-90%)
 ---
 
 ### Slide 3: Our Solution
-**Bridge Design Analyzer** - A comprehensive AI-powered platform that:
+**GeoBridge AI** - A comprehensive AI-powered platform that:
 
 ✅ **Analyzes** terrain conditions in real-time
 ✅ **Predicts** risks using ML algorithms
@@ -720,7 +720,7 @@ Total Lifetime Cost =
 ---
 
 ### Slide 14: Conclusion
-**Bridge Design Analyzer** combines:
+**GeoBridge AI** combines:
 - 🎯 **Innovation** - AI/ML algorithms
 - 🎨 **Visualization** - 3D interactive models
 - 💰 **Optimization** - Cost-benefit analysis

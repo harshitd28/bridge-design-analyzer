@@ -1,6 +1,6 @@
-# Bridge Design Tool - Geomorphic Analysis
+# GeoBridge AI - Geomorphic Analysis
 
-An IT-based tool to redesign bridge structures based on geomorphic conditions, especially for hilly areas.
+An AI-powered IT-based tool to redesign bridge structures based on geomorphic conditions, especially for hilly areas.
 
 ## Features
 

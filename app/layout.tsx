@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Bridge Design Tool - Geomorphic Analysis',
-  description: 'IT-based tool to redesign bridge structures based on geomorphic conditions',
+  title: 'GeoBridge AI - Geomorphic Analysis',
+  description: 'AI-powered IT-based tool to redesign bridge structures based on geomorphic conditions',
   viewport: {
     width: 'device-width',
     initialScale: 1,

@@ -35,7 +35,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
           transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
           className="text-6xl md:text-8xl lg:text-9xl font-bold text-center mb-6 text-white"
         >
-          Bridge Design Analyzer
+          GeoBridge AI
         </motion.h1>
 
         {/* Subtitle - No Glow */}

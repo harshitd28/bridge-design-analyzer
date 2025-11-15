@@ -1,11 +1,11 @@
-# 🎯 Quick PPT Outline - Bridge Design Analyzer
+# 🎯 Quick PPT Outline - GeoBridge AI
 
 ## Slide-by-Slide Guide (14 Slides)
 
 ---
 
 ### **Slide 1: Title**
-- **Title:** Bridge Design Analyzer
+- **Title:** GeoBridge AI
 - **Subtitle:** AI-Powered Geomorphic Analysis for Hilly Terrain
 - **Tagline:** "Building Bridges, Building Futures"
 - **Visual:** Landing page screenshot or 3D globe
@@ -24,7 +24,7 @@
 ---
 
 ### **Slide 3: Our Solution**
-**Bridge Design Analyzer** - One Platform:
+**GeoBridge AI** - One Platform:
 - ✅ Real-time terrain analysis
 - ✅ AI-powered predictions
 - ✅ 3D visualizations
@@ -196,7 +196,7 @@ Complexity = Seismic × Elevation × Slope
 ---
 
 ### **Slide 14: Conclusion**
-**Bridge Design Analyzer** combines:
+**GeoBridge AI** combines:
 - 🎯 Innovation (AI/ML)
 - 🎨 Visualization (3D)
 - 💰 Optimization (Cost)
