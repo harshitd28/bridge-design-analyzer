@@ -1,21 +1,26 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { AnimatePresence } from 'framer-motion'
-import LoadingAnimation from '@/components/LoadingAnimation'
+import { AnimatePresence, motion } from 'framer-motion'
+import LandingPage from '@/components/LandingPage'
 import SearchPanel from '@/components/SearchPanel'
 import DataPanel from '@/components/DataPanel'
 import BridgeSuggestions from '@/components/BridgeSuggestions'
 import LocationVisuals from '@/components/LocationVisuals'
 import ViewSiteButton from '@/components/ViewSiteButton'
 import SiteView from '@/components/SiteView'
+import PredictiveAnalytics from '@/components/PredictiveAnalytics'
+import Bridge3DPreview from '@/components/Bridge3DPreview'
+import TerrainCrossSection from '@/components/TerrainCrossSection'
+import AIBridgeOptimizer from '@/components/AIBridgeOptimizer'
+import ExportPanel from '@/components/ExportPanel'
 import { getLocationByCoordinates, locations } from '@/data/locations'
 
 const Globe = dynamic(() => import('@/components/Globe'), { ssr: false })
 
 export default function Home() {
-  const [loading, setLoading] = useState(true)
+  const [showLanding, setShowLanding] = useState(true)
   const [selectedLocation, setSelectedLocation] = useState<{
     lat: number
     lng: number
@@ -24,14 +29,23 @@ export default function Home() {
   const [locationData, setLocationData] = useState<any>(null)
   const [showSiteView, setShowSiteView] = useState(false)
   const [hardcodedLocation, setHardcodedLocation] = useState<any>(null)
+  const [showBridge3D, setShowBridge3D] = useState(false)
+  const [selectedBridgeType, setSelectedBridgeType] = useState<string>('')
+  const [showCrossSection, setShowCrossSection] = useState(false)
+  const [showAIOptimizer, setShowAIOptimizer] = useState(false)
+  const [showExportPanel, setShowExportPanel] = useState(false)
 
-  useEffect(() => {
-    // Reduced loading time for better UX
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1500) // Reduced from 3000ms to 1500ms
-    return () => clearTimeout(timer)
-  }, [])
+  const handleEnterApp = () => {
+    setShowLanding(false)
+  }
+
+  const handleBackToLanding = () => {
+    setShowLanding(true)
+    setSelectedLocation(null)
+    setLocationData(null)
+    setHardcodedLocation(null)
+    setShowSiteView(false)
+  }
 
   const handleLocationSelect = async (location: { lat: number; lng: number; name?: string }) => {
     // Check if it's one of our hardcoded locations
@@ -62,23 +76,42 @@ export default function Home() {
     }
   }
 
-  if (loading) {
-    return <LoadingAnimation />
-  }
-
   return (
-    <main className="relative w-full h-screen overflow-hidden">
+    <>
+      <AnimatePresence mode="wait">
+        {showLanding ? (
+          <LandingPage key="landing" onEnter={handleEnterApp} />
+        ) : (
+          <motion.main
+            key="main"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative w-full h-screen overflow-hidden"
+          >
       <Globe selectedLocation={selectedLocation} onLocationSelect={handleLocationSelect} />
       
       {!selectedLocation ? (
         <div className="absolute top-0 left-0 right-0 z-10 p-3 md:p-4 lg:p-6">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
-              Bridge Design Analyzer
-            </h1>
-            <p className="text-blue-200 text-xs sm:text-sm md:text-base lg:text-lg">
-              Geomorphic Analysis for Hilly Terrain Bridge Structures
-            </p>
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
+                Bridge Design Analyzer
+              </h1>
+              <p className="text-blue-200 text-xs sm:text-sm md:text-base lg:text-lg">
+                Geomorphic Analysis for Hilly Terrain Bridge Structures
+              </p>
+            </div>
+            <button
+              onClick={handleBackToLanding}
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 transition-all flex items-center gap-2 text-white text-sm md:text-base"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <span className="hidden md:inline">Back to Landing</span>
+            </button>
           </div>
         </div>
       ) : (
@@ -125,13 +158,43 @@ export default function Home() {
 
       {locationData && (
         <>
+          <PredictiveAnalytics data={locationData} location={selectedLocation!} />
           <LocationVisuals location={selectedLocation} data={locationData} />
           <DataPanel data={locationData} location={selectedLocation} />
-          <BridgeSuggestions data={locationData} />
+          <BridgeSuggestions 
+            data={locationData} 
+            onView3D={(bridgeType) => {
+              setSelectedBridgeType(bridgeType)
+              setShowBridge3D(true)
+            }}
+            onViewCrossSection={() => setShowCrossSection(true)}
+          />
           <ViewSiteButton 
             location={selectedLocation} 
             onViewSite={handleViewSite}
           />
+          
+          {/* AI Optimizer & Export Buttons */}
+          <div className="absolute bottom-20 right-4 z-30 flex flex-col gap-3">
+            <button
+              onClick={() => setShowAIOptimizer(true)}
+              className="bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-purple-500/20 hover:from-purple-500/30 hover:via-blue-500/30 hover:to-purple-500/30 backdrop-blur-xl text-white px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 transition-all font-semibold border border-purple-400/30 hover:border-purple-400/50"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+              <span className="hidden md:inline">AI Optimizer</span>
+            </button>
+            <button
+              onClick={() => setShowExportPanel(true)}
+              className="bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20 hover:from-green-500/30 hover:via-emerald-500/30 hover:to-green-500/30 backdrop-blur-xl text-white px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 transition-all font-semibold border border-green-400/30 hover:border-green-400/50"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span className="hidden md:inline">Export</span>
+            </button>
+          </div>
         </>
       )}
 
@@ -154,7 +217,51 @@ export default function Home() {
           />
         </AnimatePresence>
       )}
-    </main>
+
+      {/* 3D Bridge Preview */}
+      {showBridge3D && locationData && selectedLocation && (
+        <Bridge3DPreview
+          bridgeType={selectedBridgeType}
+          terrain={locationData.terrain}
+          onClose={() => setShowBridge3D(false)}
+        />
+      )}
+
+      {/* Terrain Cross-Section */}
+      {showCrossSection && locationData && (
+        <TerrainCrossSection
+          terrain={locationData.terrain}
+          geological={locationData.geological}
+          onClose={() => setShowCrossSection(false)}
+        />
+      )}
+
+      {/* AI Bridge Optimizer */}
+      {showAIOptimizer && locationData && selectedLocation && (
+        <AIBridgeOptimizer
+          data={locationData}
+          location={selectedLocation}
+          onClose={() => setShowAIOptimizer(false)}
+        />
+      )}
+
+      {/* Export Panel */}
+      {showExportPanel && locationData && selectedLocation && (
+        <ExportPanel
+          data={{
+            location: selectedLocation,
+            terrain: locationData.terrain,
+            earthquakes: locationData.earthquakes,
+            geological: locationData.geological,
+            bridgeDesigns: [],
+          }}
+          onClose={() => setShowExportPanel(false)}
+        />
+      )}
+          </motion.main>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 

@@ -1,33 +1,50 @@
 # Bridge Images Directory
 
-Place your bridge design images in this folder with the following exact file names:
+## 📍 WHERE TO PLACE YOUR BRIDGE IMAGES:
 
-## Required Image Files:
+**Full Path:** `/Users/harshit/Desktop/Hackathon Prototype/public/bridges/`
 
-1. **suspension-bridge.jpg** - Image for Suspension Bridge design
-2. **arch-bridge.jpg** - Image for Arch Bridge design
-3. **cable-stayed-bridge.jpg** - Image for Cable-Stayed Bridge design
-4. **beam-bridge.jpg** - Image for Beam Bridge design
-5. **truss-bridge.jpg** - Image for Truss Bridge design
+## 📋 Required Image Files (EXACT file names):
 
-## File Format:
-- **Format**: JPG, JPEG, PNG, or WebP
-- **Recommended size**: 800x600px or larger
-- **File names**: Must match exactly (case-sensitive)
+Copy your bridge images to this folder and rename them to:
 
-## Example:
+1. **suspension-bridge.jpg** (or .png, .jpeg, .webp)
+   - For: Suspension Bridge design
+   
+2. **arch-bridge.jpg** (or .png, .jpeg, .webp)
+   - For: Arch Bridge design
+   
+3. **cable-stayed-bridge.jpg** (or .png, .jpeg, .webp)
+   - For: Cable-Stayed Bridge design
+   
+4. **beam-bridge.jpg** (or .png, .jpeg, .webp)
+   - For: Beam Bridge design
+   
+5. **truss-bridge.jpg** (or .png, .jpeg, .webp)
+   - For: Truss Bridge design
+
+## 📁 Folder Structure:
 ```
-public/
-  bridges/
-    suspension-bridge.jpg
-    arch-bridge.jpg
-    cable-stayed-bridge.jpg
-    beam-bridge.jpg
-    truss-bridge.jpg
+Hackathon Prototype/
+  └── public/
+      └── bridges/
+          ├── suspension-bridge.jpg    ← Paste your image here
+          ├── arch-bridge.jpg          ← Paste your image here
+          ├── cable-stayed-bridge.jpg  ← Paste your image here
+          ├── beam-bridge.jpg          ← Paste your image here
+          └── truss-bridge.jpg         ← Paste your image here
 ```
 
-## Notes:
-- Images will be automatically loaded from this directory
-- If an image is missing, the system will fallback to a default Unsplash image
-- After adding images, restart the dev server: `npm run dev`
+## ✅ Steps:
+1. Open Finder and navigate to: `/Users/harshit/Desktop/Hackathon Prototype/public/bridges/`
+2. Copy your bridge images into this folder
+3. Rename them to match the exact names above (case-sensitive!)
+4. Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`
+5. Restart dev server: `npm run dev`
+
+## 💡 Tips:
+- **File names must match EXACTLY** (including hyphens and lowercase)
+- Recommended size: 800x600px or larger
+- Images will automatically replace Unsplash ones once added
+- If an image is missing, it will fallback to Unsplash
 

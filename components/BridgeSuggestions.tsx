@@ -1,11 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Building2, CheckCircle, X } from 'lucide-react'
+import { Building2, CheckCircle, X, Box, Layers } from 'lucide-react'
 import { useState } from 'react'
 
 interface BridgeSuggestionsProps {
   data: any
+  onView3D?: (bridgeType: string) => void
+  onViewCrossSection?: () => void
 }
 
 interface BridgeDesign {
@@ -18,7 +20,7 @@ interface BridgeDesign {
   image: string
 }
 
-export default function BridgeSuggestions({ data }: BridgeSuggestionsProps) {
+export default function BridgeSuggestions({ data, onView3D, onViewCrossSection }: BridgeSuggestionsProps) {
   const [isExpanded, setIsExpanded] = useState(true)
   const [selectedBridge, setSelectedBridge] = useState<number | null>(null)
 
@@ -33,18 +35,29 @@ export default function BridgeSuggestions({ data }: BridgeSuggestionsProps) {
       transition={{ duration: 0.5, delay: 0.2 }}
     >
       <div className="p-4 md:p-6 flex-1 flex flex-col overflow-hidden">
-        <div className="flex items-center justify-between mb-3 md:mb-4 flex-shrink-0">
-          <div className="flex items-center gap-2">
-            <Building2 className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white">Bridge Designs</h2>
-          </div>
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+            <div className="flex items-center justify-between mb-3 md:mb-4 flex-shrink-0">
+              <div className="flex items-center gap-2">
+                <Building2 className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white">Bridge Designs</h2>
+              </div>
+              <div className="flex items-center gap-2">
+                {onViewCrossSection && (
+                  <button
+                    onClick={onViewCrossSection}
+                    className="p-1.5 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                    title="View Terrain Cross-Section"
+                  >
+                    <Layers className="w-4 h-4 text-blue-400" />
+                  </button>
+                )}
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
 
         {isExpanded && (
           <div className="space-y-3 overflow-y-auto flex-1 min-h-0">
@@ -122,6 +135,17 @@ export default function BridgeSuggestions({ data }: BridgeSuggestionsProps) {
                         </ul>
                       </div>
                     </div>
+
+                    {/* 3D Preview Button */}
+                    {onView3D && (
+                      <button
+                        onClick={() => onView3D(bridge.name)}
+                        className="mt-3 w-full px-3 py-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/50 rounded-lg text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all"
+                      >
+                        <Box className="w-4 h-4" />
+                        View 3D Preview
+                      </button>
+                    )}
                   </motion.div>
                 )}
               </motion.div>

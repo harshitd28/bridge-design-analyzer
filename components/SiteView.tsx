@@ -12,13 +12,13 @@ interface SiteViewProps {
 
 // Bridge design images mapping - using local images from public/bridges folder
 const getBridgeImage = (bridgeName: string): string => {
-  // Map bridge names to image file names
+  // Map bridge names to actual image file names (matching user's file names)
   const imageMap: Record<string, string> = {
-    'Suspension Bridge': '/bridges/suspension-bridge.jpg',
-    'Arch Bridge': '/bridges/arch-bridge.jpg',
-    'Cable-Stayed Bridge': '/bridges/cable-stayed-bridge.jpg',
-    'Beam Bridge': '/bridges/beam-bridge.jpg',
-    'Truss Bridge': '/bridges/truss-bridge.jpg',
+    'Suspension Bridge': '/bridges/SuspensionBridge.jpg',
+    'Arch Bridge': '/bridges/ArchBridge.jpg',
+    'Cable-Stayed Bridge': '/bridges/CableStayedBridge.jpg',
+    'Beam Bridge': '/bridges/BeamBridge.jpg',
+    'Truss Bridge': '/bridges/TrussBridge.jpg',
   }
   
   // Return local image path, fallback to Unsplash if local image doesn't exist
